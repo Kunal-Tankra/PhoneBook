@@ -1,11 +1,13 @@
-
 import './App.css';
+import Navbar from './components/Navbar';
+import Table from './components/Table';
 
 function App() {
   return (
-    <>
-     blah
-    </>
+    <div id='app'>
+     <Navbar/>
+     <Table/>
+    </div>
   );
 }
 

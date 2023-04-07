@@ -1,0 +1,22 @@
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 50px;
+    position: relative;
+}
+
+#icon_name{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#contactIcon{
+    color: #1B71F0;
+    font-size: 42px;
+}
+
+#icon_name h3{
+    color: #868C92;
+}

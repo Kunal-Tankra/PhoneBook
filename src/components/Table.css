@@ -1,0 +1,71 @@
+#table {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 28px;
+    padding-right: 28px;
+
+}
+
+
+td {
+    padding: 10px 22px;
+}
+
+th {
+    padding: 12px 22px;
+    text-align: left;
+    border-bottom: 2px solid #EFEFEF;
+}
+
+tbody tr:hover {
+    background-color: #F5F5F5;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.number input, .name input {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 8px 5px;
+    background-color: white;
+}
+
+.number input:disabled, .name input:disabled{
+    background: none;
+    border: none;
+} 
+
+.editIcon, .dltIcon, .saveIcon{
+    color: #A7A7A7;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.icons svg{
+    font-size: 26px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

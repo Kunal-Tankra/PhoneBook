@@ -1,0 +1,70 @@
+#contactForm{
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: white;
+    border: solid 2px whitesmoke;
+    border-radius: 14px;
+    overflow: hidden;
+    padding-bottom: 2rem;
+    z-index: 100;
+    box-shadow: 0px 4px 5px #BABABA;
+
+}
+
+#contactForm h2{
+    background-color: whitesmoke;
+    padding: 2rem 5rem;
+    margin-bottom: 25px;
+    color: #777777;
+}
+
+#inputs{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: 0 17px;
+}
+
+ label{
+    margin-bottom: 5px;
+    font-size: large;
+}
+
+#inputs input{
+    margin-bottom: 15px;
+    width: 80%;
+    padding: 5px 5px;
+    font-size: medium;
+}
+
+#buttons{
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+#buttons button{
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px #BABABA;
+    border: none;
+
+    font-size: medium;
+    font-weight: bolder;
+}
+
+#buttons button:active{
+    box-shadow: 0px 0px 0px #BABABA;
+    
+}
+
+.disable #createBtn{
+    box-shadow: 0px 0px 0px #BABABA;
+    cursor: default;
+
+}
+
