@@ -79,7 +79,7 @@ const Table = () => {
     let warning = false
 
     for (const data of tableData) {
-      if (data.name === nameInput || data.num === NumberInput) {
+      if (data.name === nameEdit || data.num === numEdit) {
         warning = true;
         break;
       }
