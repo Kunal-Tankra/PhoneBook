@@ -8,15 +8,27 @@ import context from '../context/context';
 
 const Table = () => {
 
-  const [disableId, setDisableId] = useState(-1);
+  const [enabledId, setEnabledId] = useState(-1);
   const [localStorage, setLocalStorage] = useState([]);
-  let { tableData, setTableData , searchVal} = useContext(context);
-
-  
+  const [nameEdit, setNameEdit] = useState("");
+  const [numEdit, setNumEdit] = useState("");
+  let { tableData, setTableData, searchVal, nameInput, NumberInput, setShowAlert } = useContext(context);
 
 
   useEffect(() => {
+    if(window.localStorage.getItem("contacts") === null){
+      window.localStorage.setItem("contacts", []);
+    }
+    else{
+      (async()=>{
+        let data = await JSON.parse(window.localStorage.getItem("contacts"))
+        setTableData(data)
+      })()
+    }
+  }, []);
 
+
+  useEffect(() => {
 
     let currData = tableData
 
@@ -38,21 +50,20 @@ const Table = () => {
     setTableData(currData)
     setLocalStorage(currData)
 
-
+    window.localStorage.setItem("contacts", JSON.stringify( tableData))
 
   }, [tableData]);
 
   useEffect(() => {
-    setLocalStorage(tableData.filter(contact=>{
-      
-        if(contact.name.includes(searchVal) || contact.num.includes(searchVal)){
-          console.log(searchVal)
-          return true;
-        }
-        else{
-          return false
-        }
-      
+    setLocalStorage(tableData.filter(contact => {
+
+      if (contact.name.includes(searchVal) || contact.num.includes(searchVal)) {
+        return true;
+      }
+      else {
+        return false
+      }
+
     }))
   }, [searchVal]);
 
@@ -61,7 +72,48 @@ const Table = () => {
     setLocalStorage(removedData)
     setTableData(removedData)
   }
-  
+
+  const handleSaveBtn = (id) => {
+    setEnabledId(-1)
+    
+    let warning = false
+
+    for (const data of tableData) {
+      if (data.name === nameInput || data.num === NumberInput) {
+        warning = true;
+        break;
+      }
+
+    }
+
+    if(warning){
+      setShowAlert("showAlert")
+      setTimeout(() => {
+        setShowAlert("")
+      }, 6000);
+    }
+    else{
+
+    setTableData(tableData.map(obj => {
+      if (obj.id === id) {
+        return {
+          id: obj.id,
+          name: nameEdit,
+          num: numEdit
+        }
+      }
+      else {
+        return obj
+      }
+    }))
+  }
+  }
+
+  const handleEdit = (data) => {
+    setEnabledId(data.id)
+    setNumEdit(data.num)
+    setNameEdit(data.name)
+  }
 
   return (
     <>
@@ -83,21 +135,21 @@ const Table = () => {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody >
           {localStorage.map(data => (
             <tr key={data.id}>
               <td className='name'>
                 <Avatar>{data.name[0]}</Avatar>
-                <input type="text" placeholder={data.name} disabled={disableId === data.id ? false : true} />
+                <input type="text" value={data.id === enabledId ? nameEdit : data.name} onChange={(e) => setNameEdit(e.target.value)} disabled={enabledId === data.id ? false : true} />
 
               </td>
               <td >
                 <div className='number'>
 
-                  <input type='number' placeholder={data.num} onChange={(e)=>e.target.value}  disabled={disableId === data.id ? false : true} />
+                  <input type='number' value={data.id === enabledId ? numEdit : data.num} onChange={(e) => setNumEdit(e.target.value)} disabled={enabledId === data.id ? false : true} />
 
                   <div className="icons">
-                    {data.id === disableId ? <SaveIcon onClick={() => setDisableId(-1)} className='saveIcon' /> : <EditIcon onClick={() => setDisableId(data.id)} className='editIcon' />}
+                    {data.id === enabledId ? <SaveIcon onClick={() => handleSaveBtn(data.id)} className='saveIcon' /> : <EditIcon onClick={() => handleEdit(data)} className='editIcon' />}
 
                     <DeleteIcon onClick={() => { handleDelete(data) }} className='dltIcon' />
                   </div>

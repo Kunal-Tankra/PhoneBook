@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { useForkRef } from "@mui/material";
+import { createContext, useEffect, useState } from "react";
 
 const context = createContext();
 
@@ -12,7 +13,24 @@ const AppContext = ({children})=>{
     const [id, setId] = useState(0);
 
     const [searchVal, setSearchVal] = useState("");
+    const [showAlert, setShowAlert] = useState("");
     
+    useEffect(() => {
+        if(window.localStorage.getItem("id") === null){
+            window.localStorage.setItem("id", 0)
+        }
+        else{
+            (async()=>{
+                let localId = await JSON.parse( localStorage.getItem("id"))
+                setId(localId);
+            })()
+        }
+    }, []);
+
+    useEffect(() => {
+        JSON.stringify(localStorage.setItem("id", id))
+    }, [id]);
+
     let createContactfunc = (nameIn,phIn)=>{
         let currCont = {
             id: id,
@@ -25,7 +43,7 @@ const AppContext = ({children})=>{
     }
     
    return (
-    <context.Provider value={{nameInput,setNameInput , NumberInput, setNumberInput, createContactfunc, tableData, setTableData, searchVal,setSearchVal }}>
+    <context.Provider value={{nameInput,setNameInput , NumberInput, setNumberInput, createContactfunc, tableData, setTableData, searchVal,setSearchVal, showAlert, setShowAlert }}>
         {children}
     </context.Provider>
 )}

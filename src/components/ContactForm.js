@@ -3,15 +3,35 @@ import './ContactForm.css'
 import context from '../context/context'
 
 const ContactForm = ({ display, setDisplay }) => {
-    let { setNumberInput, setNameInput, nameInput, NumberInput,createContactfunc } = useContext(context);
+    let { setNumberInput, setNameInput, nameInput, NumberInput,createContactfunc, tableData, setShowAlert } = useContext(context);
 
     const [disableBtn, setDisableBtn] = useState('disable');
 
 
 
     const handleCreate = () => {
-        setDisplay("none")
-        createContactfunc(nameInput, NumberInput)
+        
+        let warning = false
+        
+        for (const data of tableData) {
+            if(data.name == nameInput || data.num == NumberInput){
+                warning = true;
+                break;
+            }
+            
+        }
+        
+        if(warning){
+            setShowAlert("showAlert")
+            setTimeout(() => {
+                setShowAlert("")
+            }, 6000);
+        }
+        else{
+            setDisplay("none")
+
+            createContactfunc(nameInput, NumberInput)
+        }
     }
 
 
