@@ -9,10 +9,13 @@
     border-radius: 14px;
     overflow: hidden;
     padding-bottom: 2rem;
-    z-index: 100;
-    box-shadow: 0px 4px 5px #BABABA;
-
+    z-index: 2;
+    box-shadow: 0px 6px 11px #BABABA;
 }
+
+
+
+
 
 #contactForm h2{
     background-color: whitesmoke;
