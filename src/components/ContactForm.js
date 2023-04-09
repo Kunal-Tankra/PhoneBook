@@ -14,7 +14,7 @@ const ContactForm = ({ display, setDisplay }) => {
         let warning = false
         
         for (const data of tableData) {
-            if(data.name == nameInput || data.num == NumberInput){
+            if(data.name === nameInput || data.num === NumberInput){
                 warning = true;
                 break;
             }

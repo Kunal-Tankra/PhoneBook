@@ -12,7 +12,7 @@ const Table = () => {
   const [localStorage, setLocalStorage] = useState([]);
   const [nameEdit, setNameEdit] = useState("");
   const [numEdit, setNumEdit] = useState("");
-  let { tableData, setTableData, searchVal, nameInput, NumberInput, setShowAlert } = useContext(context);
+  let { tableData, setTableData, searchVal, setShowAlert } = useContext(context);
 
 
   useEffect(() => {
@@ -25,6 +25,8 @@ const Table = () => {
         setTableData(data)
       })()
     }
+
+    // eslint-disable-next-line
   }, []);
 
 
@@ -52,6 +54,7 @@ const Table = () => {
 
     window.localStorage.setItem("contacts", JSON.stringify( tableData))
 
+    // eslint-disable-next-line
   }, [tableData]);
 
   useEffect(() => {
@@ -65,6 +68,8 @@ const Table = () => {
       }
 
     }))
+
+    // eslint-disable-next-line
   }, [searchVal]);
 
   const handleDelete = (data) => {
