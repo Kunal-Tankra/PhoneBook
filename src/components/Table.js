@@ -31,7 +31,7 @@ const Table = () => {
 
 
   useEffect(() => {
-
+    console.log("Welcome to PhoneBook App.....")
     let currData = tableData
 
     currData.sort((a, b) => {
