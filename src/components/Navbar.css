@@ -4,6 +4,8 @@
     align-items: center;
     padding: 18px 50px;
     position: relative;
+    flex-wrap: wrap;
+    row-gap: 20px;
     
 }
 
