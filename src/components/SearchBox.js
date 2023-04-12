@@ -12,12 +12,13 @@ const SearchBox = () => {
   
 
   const handleCross = ()=>{
-    setSearch(true)
+    console.log("sfd")
     setSearchVal("")
+    setSearch(true)
   }
 
   return (
-    <div  onBlur={()=>setSearch(true)} id='searchBox'>
+    <div id='searchBox'>
       {search? <SearchIcon id='searchIcon'/> : <ClearIcon onClick={handleCross} id='crossIcon'/>}
 
       <input value={searchVal}  onChange={e=>setSearchVal(e.target.value)} onClick={()=>setSearch(false)} type="text" placeholder='Search for name or number' />
