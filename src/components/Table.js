@@ -58,6 +58,7 @@ const Table = () => {
     // eslint-disable-next-line
   }, [tableData]);
 
+  // func for search 
   useEffect(() => {
     setLocalStorage(tableData.filter(contact => {
 
@@ -81,11 +82,12 @@ const Table = () => {
 
   const handleSaveBtn = (id) => {
     setEnabledId(-1)
+    // setShowAlert("")
     
     let warning = false
 
     for (const data of tableData) {
-      if (data.name === nameEdit || data.num === numEdit) {
+      if ((id !== data.id) && (data.name === nameEdit || data.num === numEdit)) {
         warning = true;
         break;
       }
