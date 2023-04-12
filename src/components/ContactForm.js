@@ -58,8 +58,8 @@ const ContactForm = ({ display, setDisplay }) => {
 
 
     return (
-        <>
-            <div id='contactForm' style={{ display: display }}>
+        <div className='contactFormContainer' style={{ display: display }}>
+            <div id='contactForm' >
                 <h2>Create a new Contact</h2>
                 <div id="inputs">
 
@@ -76,7 +76,7 @@ const ContactForm = ({ display, setDisplay }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
