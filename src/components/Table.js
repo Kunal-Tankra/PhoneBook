@@ -62,7 +62,7 @@ const Table = () => {
   useEffect(() => {
     setLocalStorage(tableData.filter(contact => {
 
-      if (contact.name.includes(searchVal) || contact.num.includes(searchVal)) {
+      if (contact.name.toLowerCase().includes(searchVal.toLowerCase()) || contact.num.includes(searchVal)) {
         return true;
       }
       else {
